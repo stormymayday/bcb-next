@@ -1,0 +1,648 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model drymilllots {
+  id                 String   @id @default(auto()) @map("_id") @db.ObjectId
+  v                  Int      @map("__v")
+  absorbedWeight     String
+  absorbedWeightUnit String
+  asset              String?
+  createdDate        String
+  currentWeight      String
+  currentWeightUnit  String
+  documents          String[]
+  dryMillLotId       String
+  dryMillNode        String   @db.ObjectId
+  dryMillNodeId      String
+  images             String[]
+  lastModifiedDate   String
+  lotDetailType      String
+  lotIsOpen          Boolean
+  lotName            String
+  lotType            String
+  marketplaceId      String
+  organizationId     String
+  organizationName   String
+  processingDate     String?
+  productId          String
+  productName        String
+  productSku         String
+  productToken       String
+  quality            String
+  timestamp          String?
+  value              String?
+  videos             String[]
+}
+
+model drymillnodes {
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  v                 Int      @map("__v")
+  city              String
+  country           String
+  createdDate       String
+  defaultLocationId String
+  documents         String[]
+  dryMillLots       String[]
+  dryMillNodeId     String
+  elevation         String
+  elevationUnit     String
+  farmer            String   @db.ObjectId
+  images            String[]
+  lastModifiedDate  String
+  latitude          String
+  longitude         String
+  marketplaceId     String
+  nodeDetailType    String
+  nodeName          String
+  nodeType          String
+  organizationId    String
+  organizationName  String
+  state             String
+  videos            String[]
+}
+
+model exporterintakelots {
+  id                   String   @id @default(auto()) @map("_id") @db.ObjectId
+  v                    Int      @map("__v")
+  absorbedWeight       String
+  absorbedWeightUnit   String
+  asset                String
+  createdDate          String
+  currentWeight        String
+  currentWeightUnit    String
+  documents            String[]
+  exporterIntakeLotId  String
+  exporterIntakeNode   String   @db.ObjectId
+  exporterIntakeNodeId String
+  images               String[]
+  lastModifiedDate     String
+  lotDetailType        String
+  lotIsOpen            Boolean
+  lotName              String
+  lotType              String
+  marketplaceId        String
+  organizationId       String
+  organizationName     String
+  processingDate       String
+  productId            String
+  productName          String
+  productSku           String
+  productToken         String
+  quality              String
+  timestamp            String
+  value                String
+  videos               String[]
+}
+
+model exporterintakenodes {
+  id                   String   @id @default(auto()) @map("_id") @db.ObjectId
+  v                    Int      @map("__v")
+  city                 String
+  country              String
+  createdDate          String
+  defaultLocationId    String
+  documents            String[]
+  elevation            String
+  elevationUnit        String
+  exporterIntakeLots   String[]
+  exporterIntakeNodeId String
+  farmer               String   @db.ObjectId
+  images               String[]
+  lastModifiedDate     String
+  latitude             String
+  longitude            String
+  marketplaceId        String
+  nodeDetailType       String
+  nodeName             String
+  nodeType             String
+  organizationId       String
+  organizationName     String
+  state                String
+  videos               String[]
+}
+
+model exportlots {
+  id                     String   @id @default(auto()) @map("_id") @db.ObjectId
+  v                      Int      @map("__v")
+  absorbedWeight         String
+  absorbedWeightUnit     String
+  createdDate            String
+  currentWeight          String
+  currentWeightUnit      String
+  documents              String[]
+  exportLotId            String
+  exportNode             String   @db.ObjectId
+  exportNodeId           String
+  ihcafePaymentAsset     String
+  ihcafePaymentNotes     String
+  ihcafePaymentTimeStamp String
+  ihcafePaymentValue     String
+  images                 String[]
+  lastModifiedDate       String
+  lotDetailType          String
+  lotIsOpen              Boolean
+  lotName                String
+  lotType                String
+  marketplaceId          String
+  numberOfBags           String
+  organizationId         String
+  organizationName       String
+  productId              String
+  productName            String
+  productSku             String
+  productToken           String
+  quality                String
+  secondPaymentAsset     String
+  secondPaymentNotes     String
+  secondPaymentTimeStamp String
+  secondPaymentValue     String
+  spousePaymentAsset     String
+  spousePaymentNotes     String
+  spousePaymentTimestamp String
+  spousePaymentValue     String
+  videos                 String[]
+}
+
+model exportnodes {
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  v                 Int      @map("__v")
+  city              String
+  country           String
+  createdDate       String
+  defaultLocationId String
+  documents         String[]
+  elevation         String
+  elevationUnit     String
+  exportLots        String[]
+  exportNodeId      String
+  farmer            String   @db.ObjectId
+  images            String[]
+  lastModifiedDate  String
+  latitude          String
+  locationId        String
+  longitude         String
+  marketplaceId     String
+  name              String
+  nodeDetailType    String
+  nodeName          String
+  nodeType          String
+  organizationId    String
+  organizationName  String
+  state             String
+  unitValue         String
+  unitValueUnit     String
+  value             String
+  valueUnit         String
+  videos            String[]
+}
+
+model farmers {
+  id                  String  @id @default(auto()) @map("_id") @db.ObjectId
+  v                   Int     @map("__v")
+  dryMillNode         String  @db.ObjectId
+  exportNode          String  @db.ObjectId
+  exporterIntakeNode  String  @db.ObjectId
+  farmerName          String
+  finishedProductNode String? @db.ObjectId
+  harvestNode         String  @db.ObjectId
+  harvestYear         String
+  importNode          String  @db.ObjectId
+  producerName        String
+  roasterIntakeNode   String? @db.ObjectId
+  roastingNode        String? @db.ObjectId
+  wetMillNode         String  @db.ObjectId
+}
+
+model finishedproductlots {
+  id                    String   @id @default(auto()) @map("_id") @db.ObjectId
+  v                     Int      @map("__v")
+  absorbedWeight        String
+  absorbedWeightUnit    String
+  createdDate           String
+  currentWeight         String
+  currentWeightUnit     String
+  documents             String[]
+  finishedProductLotId  String
+  finishedProductNode   String   @db.ObjectId
+  finishedProductNodeId String
+  images                String[]
+  lastModifiedDate      String
+  lotDetailType         String
+  lotIsOpen             Boolean
+  lotName               String
+  lotType               String
+  marketplaceId         String
+  organizationId        String
+  organizationName      String
+  productId             String
+  productName           String
+  productSku            String
+  productToken          String
+  quality               String
+  thirdPaymentAsset     String
+  thirdPaymentNotes     String
+  thirdPaymentTimeStamp String
+  thirdPaymentValue     String
+  videos                String[]
+}
+
+model finishedproductnodes {
+  id                    String   @id @default(auto()) @map("_id") @db.ObjectId
+  v                     Int      @map("__v")
+  address               String
+  city                  String
+  country               String
+  createdDate           String
+  defaultLocationId     String
+  documents             String[]
+  elevation             String
+  elevationUnit         String
+  farmer                String   @db.ObjectId
+  finishedProductLots   String[]
+  finishedProductNodeId String
+  images                String[]
+  lastModifiedDate      String
+  latitude              String
+  locationId            String
+  longitude             String
+  marketplaceId         String
+  name                  String
+  nodeDetailType        String
+  nodeName              String
+  nodeType              String
+  organizationId        String
+  organizationName      String
+  state                 String
+  unitValue             String
+  unitValueUnit         String
+  value                 String
+  valueUnit             String
+  videos                String[]
+}
+
+model harvestlots {
+  id                 String   @id @default(auto()) @map("_id") @db.ObjectId
+  v                  Int      @map("__v")
+  absorbedWeight     String
+  absorbedWeightUnit String
+  asset              String
+  coffeeVarietal     String
+  createdDate        String
+  currentWeight      String
+  currentWeightUnit  String
+  documents          String[]
+  harvestDate        String
+  harvestLotId       String
+  harvestNode        String   @db.ObjectId
+  harvestNodeId      String
+  images             String[]
+  lastModifiedDate   String
+  lotDetailType      String
+  lotIsOpen          Boolean
+  lotName            String
+  lotType            String
+  marketplaceId      String
+  organizationId     String
+  organizationName   String
+  productId          String
+  productName        String
+  productSku         String
+  productToken       String
+  quality            String
+  timestamp          String
+  value              String
+  videos             String[]
+}
+
+model harvestnodes {
+  id                      String   @id @default(auto()) @map("_id") @db.ObjectId
+  v                       Int      @map("__v")
+  city                    String
+  country                 String
+  createdDate             String
+  defaultLocationId       String
+  documents               String[]
+  elevation               String
+  elevationUnit           String
+  farmer                  String   @db.ObjectId
+  harvestLots             String[]
+  harvestNodeId           String
+  harvestedBetween        String?
+  images                  String[]
+  lastModifiedDate        String
+  latitude                String
+  longitude               String
+  marketplaceId           String
+  nodeDetailType          String
+  nodeName                String
+  nodeType                String
+  organizationId          String
+  organizationName        String
+  state                   String
+  totaAbsorbedWeight      String?
+  totalAbsorbedWeightUnit String?
+  videos                  String[]
+}
+
+model importlots {
+  id                                            String   @id @default(auto()) @map("_id") @db.ObjectId
+  v                                             Int      @map("__v")
+  absorbedWeight                                String
+  absorbedWeightUnit                            String
+  catrachaCommunityContributionPaymentAsset     String
+  catrachaCommunityContributionPaymentNotes     String
+  catrachaCommunityContributionPaymentTimeStamp String
+  catrachaCommunityContributionPaymentValue     String
+  createdDate                                   String
+  currentWeight                                 String
+  currentWeightUnit                             String
+  damage                                        String
+  documents                                     String[]
+  fobBasePaymentAsset                           String
+  fobBasePaymentNotes                           String
+  fobBasePaymentTimeStamp                       String
+  fobBasePaymentValue                           String
+  fobPremiumPaymentAsset                        String
+  fobPremiumPaymentNotes                        String
+  fobPremiumPaymentTimestamp                    String
+  fobPremiumPaymentValue                        String
+  images                                        String[]
+  importLotId                                   String
+  importNode                                    String   @db.ObjectId
+  importNodeId                                  String
+  lastModifiedDate                              String
+  lotDetailType                                 String
+  lotIsOpen                                     Boolean
+  lotName                                       String
+  lotType                                       String
+  marketplaceId                                 String
+  numberOfBags                                  String
+  organizationId                                String
+  organizationName                              String
+  productId                                     String
+  productName                                   String
+  productSku                                    String
+  productToken                                  String
+  quality                                       String
+  transferDate                                  String
+  videos                                        String[]
+}
+
+model importnodes {
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  v                 Int      @map("__v")
+  city              String
+  country           String
+  createdDate       String
+  defaultLocationId String
+  documents         String[]
+  elevation         String
+  elevationUnit     String
+  farmer            String   @db.ObjectId
+  images            String[]
+  importLots        String[]
+  importNodeId      String
+  lastModifiedDate  String
+  latitude          String
+  locationId        String
+  longitude         String
+  marketplaceId     String
+  name              String
+  nodeDetailType    String
+  nodeName          String
+  nodeType          String
+  organizationId    String
+  organizationName  String
+  state             String
+  unitValue         String
+  unitValueUnit     String
+  value             String
+  valueUnit         String
+  videos            String[]
+}
+
+model roasterintakelots {
+  id                    String   @id @default(auto()) @map("_id") @db.ObjectId
+  v                     Int      @map("__v")
+  absorbedWeight        String
+  absorbedWeightUnit    String
+  createdDate           String
+  currentWeight         String
+  currentWeightUnit     String
+  damage                String
+  documents             String[]
+  fobPaymentAsset       String
+  fobPaymentNotes       String
+  fobPaymentTimestamp   String
+  fobPaymentValue       String
+  freightCostAsset      String
+  freightCostNotes      String
+  freightCostTimetamp   String
+  freightCostValue      String
+  images                String[]
+  importCostAsset       String
+  importCostNotes       String
+  importCostTimestamp   String
+  importCostValue       String
+  lastModifiedDate      String
+  lotDetailType         String
+  lotIsOpen             Boolean
+  lotName               String
+  lotType               String
+  marketplaceId         String
+  numberOfBags          String
+  organizationId        String
+  organizationName      String
+  productId             String
+  productName           String
+  productSku            String
+  productToken          String
+  quality               String
+  receivedDate          String
+  roasterIntakeLotId    String
+  roasterIntakeNode     String   @db.ObjectId
+  roasterIntakeNodeId   String
+  roastingCostAsset     String
+  roastingCostNotes     String
+  roastingCostTimestamp String
+  roastingCostValue     String
+  transferDate          String
+  videos                String[]
+}
+
+model roasterintakenodes {
+  id                  String   @id @default(auto()) @map("_id") @db.ObjectId
+  v                   Int      @map("__v")
+  address             String
+  city                String
+  country             String
+  createdDate         String
+  defaultLocationId   String
+  documents           String[]
+  elevation           String
+  elevationUnit       String
+  farmer              String   @db.ObjectId
+  images              String[]
+  lastModifiedDate    String
+  latitude            String
+  locationId          String
+  longitude           String
+  marketplaceId       String
+  name                String
+  nodeDetailType      String
+  nodeName            String
+  nodeType            String
+  organizationId      String
+  organizationName    String
+  roasterIntakeLots   String[]
+  roasterIntakeNodeId String
+  state               String
+  tagline             String
+  unitValue           String
+  unitValueUnit       String
+  value               String
+  valueUnit           String
+  videos              String[]
+  websiteUrl          String
+}
+
+model roastinglots {
+  id                 String   @id @default(auto()) @map("_id") @db.ObjectId
+  v                  Int      @map("__v")
+  absorbedWeight     String
+  absorbedWeightUnit String
+  chargeTemperature  String?
+  createdDate        String
+  cuppingScore       String
+  currentWeight      String
+  currentWeightUnit  String
+  documents          String[]
+  dropTemperature    String?
+  images             String[]
+  lastModifiedDate   String
+  lotDetailType      String
+  lotIsOpen          Boolean
+  lotName            String
+  lotType            String
+  marketplaceId      String
+  organizationId     String
+  organizationName   String
+  productId          String
+  productName        String
+  productSku         String
+  productToken       String
+  quality            String
+  roastDate          String
+  roastLossQuantity  String
+  roastType          String
+  roasterActor       String
+  roastingLotId      String
+  roastingNode       String   @db.ObjectId
+  roastingNodeId     String
+  roastingNotes      String
+  tastingNotes       String
+  totalRoastTime     String?
+  videos             String[]
+}
+
+model roastingnodes {
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  v                 Int      @map("__v")
+  address           String
+  city              String
+  country           String
+  createdDate       String
+  defaultLocationId String
+  documents         String[]
+  elevation         String
+  elevationUnit     String
+  farmer            String   @db.ObjectId
+  images            String[]
+  lastModifiedDate  String
+  latitude          String
+  locationId        String
+  longitude         String
+  marketplaceId     String
+  name              String
+  nodeDetailType    String
+  nodeName          String
+  nodeType          String
+  organizationId    String
+  organizationName  String
+  roastingLots      String[]
+  roastingNodeId    String
+  state             String
+  unitValue         String
+  unitValueUnit     String
+  value             String
+  valueUnit         String
+  videos            String[]
+}
+
+model wetmilllots {
+  id                 String   @id @default(auto()) @map("_id") @db.ObjectId
+  v                  Int      @map("__v")
+  absorbedWeight     String
+  absorbedWeightUnit String
+  asset              String
+  createdDate        String
+  currentWeight      String
+  currentWeightUnit  String
+  documents          String[]
+  images             String[]
+  lastModifiedDate   String
+  lotDetailType      String
+  lotIsOpen          Boolean
+  lotName            String
+  lotType            String
+  marketplaceId      String
+  organizationId     String
+  organizationName   String
+  processingDate     String
+  productId          String
+  productName        String
+  productSku         String
+  productToken       String
+  quality            String
+  timestamp          String
+  value              String
+  videos             String[]
+  wetMillLotId       String
+  wetMillNode        String   @db.ObjectId
+  wetMillNodeId      String
+}
+
+model wetmillnodes {
+  id                      String   @id @default(auto()) @map("_id") @db.ObjectId
+  v                       Int      @map("__v")
+  city                    String
+  country                 String
+  createdDate             String
+  defaultLocationId       String
+  documents               String[]
+  elevation               String
+  elevationUnit           String
+  farmer                  String   @db.ObjectId
+  images                  String[]
+  lastModifiedDate        String
+  latitude                String
+  longitude               String
+  marketplaceId           String
+  nodeDetailType          String
+  nodeName                String
+  nodeType                String
+  organizationId          String
+  organizationName        String
+  state                   String
+  totaAbsorbedWeight      String
+  totalAbsorbedWeightUnit String
+  videos                  String[]
+  wetMillLots             String[]
+  wetMillNodeId           String
+}
